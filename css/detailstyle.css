@@ -1,0 +1,27 @@
+body{
+   
+}
+
+.container{
+    
+}
+
+.heading{
+    text-align: center;
+}
+
+.prodsum{
+    margin: 0 auto;
+    max-width: 55%;
+}
+
+.infoContainer{
+    margin: 0 auto;
+    max-width: 65%;
+}
+
+
+.categories{
+    padding-top: 15px;
+    margin-left: 40%;
+}
