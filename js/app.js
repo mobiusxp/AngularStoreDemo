@@ -8,14 +8,15 @@ app.controller('ProductListController',['$scope','$http',function($scope,$http) 
     $scope.productList=[];
     $http.get('http://kelvin.ist.rit.edu/~ip9636/Angular/index.php?id=0').success(function(data){
         console.log("in get");
-        // console.dir(data);
+        console.dir(data);
         $scope.productList = data;
-        console.log($scope.productList);
+        $scope.x =$scope.productList;
     }); 
     
-this.gotoDetails = function(id) {
+$scope.gotoDetails = function(id) {
         //redirect to details
-    window.location.href = "details.php"
+    console.log("HELLO"+id);   
+    window.location.href = "details.html?id="+id;
     };
                                 
 }]);
