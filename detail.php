@@ -39,10 +39,10 @@
 
             <div class="prodReviews">
                 <h3>Submit a review!</h3>
-                    <form>
+                    <form ng-controller="ReviewController as rCtlr" ng-submit="rCtlr.addReview(product)">
                         <b>Review</b>
-                       {{review.text}}</p><br/>
-                <b>Email</b><cite>{{review.email}}</cite>
+                       {{rCtlr.review.text}}</p><br/>
+                <b>Email</b><cite>{{rCtlr.review.email}}</cite>
                         <fieldset class="form-group">
                             <label for="username">Username</label>
                             <input type="text" class="form-control" id="username" placeholder="username" />
@@ -50,12 +50,12 @@
 
                         <fieldset class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" ng-model="review.email" class="form-control" id="username" placeholder="Email" />
+                            <input type="email" ng-model="rCtlr.review.email" class="form-control" id="username" placeholder="Email" />
 
                         </fieldset>
                         <fieldset class="form-group">
                             <label for="userReview">Review</label>
-                            <textarea class="form-control" ng-model="review.text" id="userReview" rows="3"></textarea>
+                            <textarea class="form-control" ng-model="rCtlr.review.text" id="userReview" rows="3"></textarea>
                         </fieldset>
                         
                         <button type="submit" class="btn btn-primary">Submit</button>
