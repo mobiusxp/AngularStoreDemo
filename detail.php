@@ -5,32 +5,44 @@
 	<!--<link rel="stylesheet" type="text/css" href="css/style.css">-->	
     <link rel="stylesheet" type="text/css" href="css/detailstyle.css">	
 </head>
-<body>
+<body ng-app="myapp">
 <div class="container">
-    <div class="prodsum">
+    <div class="prodsum" ng-controller="ProductDetailsController as product">
         <div id="heading">
             <h1>Product Name</h1>
         </div>
-        <div id="productPicture"><img src="http://i.imgur.com/XjS6egA.jpg" alt="an image here" /></div>
+        <div id="productPicture"><img ng-src="{{product.image_src}}" alt="an image here" /></div>
+        <ul class="nav nav-tabs">
+            <li ng-class="{active:tab===1}"><a href ng-click="tab=1">Details</a></li>
+            <li ng-class="{active:tab===2}"><a href ng-click="tab=2">Review</a></li>
+        </ul>
         
-        <div class="btn-group categories" data-toggle="buttons">
+       <!-- <div class="btn-group categories" data-toggle="buttons">
           <label class="btn btn-primary active">
             <input type="radio" name="options" id="option1" autocomplete="off" checked> Details
           </label>
           <label class="btn btn-primary">
             <input type="radio" name="options" id="option2" autocomplete="off"> Reviews
           </label>
-        </div>
+        </div> -->
 
         <div class="infoContainer">
-            <div class="prodDetails">
-                <h3>Product Details</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <div class="prodDetails" ng-show="tab===1">
+                <h3>Description</h3>
+                <p>{{product.description}}</p>
+            </div>
+             <div class="prodDetails" ng-show="tab===2">
+                 <h3>Review</h3>
+                <p>{{product.review}}</p>
+            </div>
             </div>
 
             <div class="prodReviews">
                 <h3>Submit a review!</h3>
                     <form>
+                        <b>Review</b>
+                       {{review.text}}</p><br/>
+                <b>Email</b><cite>{{review.email}}</cite>
                         <fieldset class="form-group">
                             <label for="username">Username</label>
                             <input type="text" class="form-control" id="username" placeholder="username" />
@@ -38,42 +50,24 @@
 
                         <fieldset class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" id="username" placeholder="Email" />
+                            <input type="email" ng-model="review.email" class="form-control" id="username" placeholder="Email" />
 
                         </fieldset>
-
-                        <fieldset class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="password" />
-                        </fieldset>
-
                         <fieldset class="form-group">
                             <label for="userReview">Review</label>
-                            <textarea class="form-control" id="userReview" rows="3"></textarea>
+                            <textarea class="form-control" ng-model="review.text" id="userReview" rows="3"></textarea>
                         </fieldset>
                         
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
             </div>
-        </div>
-    
     </div>
 </div>	
     
-    
-    
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-$(function(){
-
-	var html='<div class="col-sm-6 col-md-3 col-lg-3"><div class="thumbnail"><img src="" alt=""><div class="caption"><h3>Thumbnail label</h3><p></p><p><a href="#" class="btn btn-primary" role="button">Button</a><a href="#" class="btn btn-default" role="button">Button</a></p></div></div></div>';
-	for (var i = 0; i < 8; i++) {
-			$('#products .row').append(html);	
-		};	
-
-});
-
-</script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+<script src="./js/app.js"></script>
 </body>
 </html>
