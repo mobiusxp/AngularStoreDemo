@@ -22,7 +22,7 @@ class getData{
         		$response['description']=$desc;
         		$response['price']=$price;
         		$response['quantity']=$quantity;
-        		$response['image_src']="kelvin.ist.rit.edu/~ip9636/Angular/assets/img/".$img;
+        		$response['image_src']="http://kelvin.ist.rit.edu/~ip9636/Angular/assets/img/".$img;
         		$response['review'][]=$review;
         	}
         	return $response;
