@@ -35,16 +35,22 @@ class getData{
 	public function getAllDetails(){
 		global $mysqli;
 		$arr=array();
+
 		$sql=$mysqli->prepare("SELECT id,name,description,price,quantity,imgName,review from product");
 		$sql->execute();
 		$sql->bind_result($id,$pname,$desc,$price,$quantity,$img,$review);
 		while ($sql->fetch()){
-        		$arr[$id]['name']=$pname;
-        		$arr[$id]['description']=$desc;
-        		$arr[$id]['price']=$price;
-        		$arr[$id]['quantity']=$quantity;
-        		$arr[$id]['image_src']="kelvin.ist.rit.edu/~ip9636/Angular/img/".$img;
-        		$arr[$id]['review'][]=$review;
+
+				$temp=array();
+				
+        		$temp['id']=$id;	
+        		$temp['name']=$pname;
+        		$temp['description']=$desc;
+        		$temp['price']=$price;
+        		$temp['quantity']=$quantity;
+        		$temp['image_src']="kelvin.ist.rit.edu/~ip9636/Angular/img/".$img;
+        		$temp['review'][]=$review;
+        		array_push($arr,$temp); 
         }
        	return $arr;	
 	}	

@@ -2,14 +2,15 @@
 (function(){
 var app = angular.module('myapp', ['ngRoute']);
 
-app.controller('ProductListController',['$http',function($http) {
-    this.productList = productList;
+app.controller('ProductListController',['$scope','$http',function($scope,$http) {
+    // this.productList = productList;
     //var productList = this;
-     productList=[];
+    $scope.productList=[];
     $http.get('http://kelvin.ist.rit.edu/~ip9636/Angular/index.php?id=0').success(function(data){
         console.log("in get");
-        console.dir(data);
-        productList = data;
+        // console.dir(data);
+        $scope.productList = data;
+        console.log($scope.productList);
     }); 
     
 this.gotoDetails = function(id) {
@@ -38,20 +39,20 @@ app.controller('ProductDetailsController',function($scope,$http) {
                     price:3.4,
                    description:"Just do it"};*/
 
-    var productList = [{name:"Nike",
-                   image:"nike.jpg",
-                    price:3.4,
-                   description:"Just do it"},
-                   {name:"Adidas",
-                   image:"nike.jpg",
-                    price:3.4,
-                   description:"Just do it"},
-                   {name:"Reebok",
-                   image:"nike.jpg",
-                    price:3.4,
-                   description:"Just do it"},
-                   {name:"Puma",
-                   image:"nike.jpg",
-                    price:3.4,
-                   description:"Just do it"}];
+    // var productList = [{name:"Nike",
+    //                image:"nike.jpg",
+    //                 price:3.4,
+    //                description:"Just do it"},
+    //                {name:"Adidas",
+    //                image:"nike.jpg",
+    //                 price:3.4,
+    //                description:"Just do it"},
+    //                {name:"Reebok",
+    //                image:"nike.jpg",
+    //                 price:3.4,
+    //                description:"Just do it"},
+    //                {name:"Puma",
+    //                image:"nike.jpg",
+    //                 price:3.4,
+    //                description:"Just do it"}];
 })();
