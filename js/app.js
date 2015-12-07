@@ -2,58 +2,44 @@
 (function(){
 var app = angular.module('myapp', ['ngRoute']);
 
-app.controller('ProductListController',['$scope','$http',function($scope,$http) {
-    // this.productList = productList;
-    //var productList = this;
+app.controller('ProductListController',function($scope,$http) {
+    
     $scope.productList=[];
     $http.get('http://kelvin.ist.rit.edu/~ip9636/Angular/index.php?id=0').success(function(data){
         console.log("in get");
         console.dir(data);
         $scope.productList = data;
         $scope.x =$scope.productList;
+
     }); 
     
-$scope.gotoDetails = function(id) {
+this.gotoDetails = function(id) {
         //redirect to details
-    console.log("HELLO"+id);   
-    window.location.href = "details.html?id="+id;
+    console.log("HELLO"+id);     
+    window.location.href = "details.php"
     };
                                 
 }]);
     
 app.controller('ProductDetailsController',function($scope,$http) {
-   
+   $scope.product={};
     $http.get('http://kelvin.ist.rit.edu/~ip9636/Angular/index.php?id=1').success(function(data){
-         console.log("in get");
+        console.log("in get");
         console.dir(data);
         $scope.product = data;
+        
     }); 
+                           
+});
     
-  /*this.getProductDetails = function(id) {
-       
-    };*/
+app.controller('ReviewController',function($scope) {
+    $scope.userReview="hi";
+    $scope.email="";
+    $scope.addReview = function() {
+        console.log("hello");
+    };
                                 
 });
     
-    /*  var product = {name:"Nike",
-                   image:"http://i.imgur.com/XjS6egA.jpg",
-                    price:3.4,
-                   description:"Just do it"};*/
 
-    // var productList = [{name:"Nike",
-    //                image:"nike.jpg",
-    //                 price:3.4,
-    //                description:"Just do it"},
-    //                {name:"Adidas",
-    //                image:"nike.jpg",
-    //                 price:3.4,
-    //                description:"Just do it"},
-    //                {name:"Reebok",
-    //                image:"nike.jpg",
-    //                 price:3.4,
-    //                description:"Just do it"},
-    //                {name:"Puma",
-    //                image:"nike.jpg",
-    //                 price:3.4,
-    //                description:"Just do it"}];
 })();
