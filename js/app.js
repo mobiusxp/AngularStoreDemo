@@ -19,7 +19,7 @@ this.gotoDetails = function(id) {
     window.location.href = "details.php"
     };
                                 
-}]);
+});
     
 app.controller('ProductDetailsController',function($scope,$http) {
    $scope.product={};
