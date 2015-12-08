@@ -10,7 +10,7 @@ var app = angular.module('myapp', ['ngRoute']);
 app.controller('ProductListController',function($scope,$http) {
     
     $scope.productList=[];
-    $http.get('http://kelvin.ist.rit.edu/~ip9636/Angular/index.php?id='+id).success(function(data){
+    $http.get('http://kelvin.ist.rit.edu/~ip9636/Angular/index.php?id=0').success(function(data){
         console.log("in get");
         console.dir(data);
         $scope.productList = data;
@@ -20,10 +20,8 @@ app.controller('ProductListController',function($scope,$http) {
     
 this.gotoDetails = function(id) {
         //redirect to details
-<<<<<<< HEAD
+
     console.log("HELLO"+id);     
-=======
->>>>>>> 39a653a27f6278eb492d34828b2bfe1dfa44bfed
     window.location.href = "detail.html?id="+id;
     };
                                 
