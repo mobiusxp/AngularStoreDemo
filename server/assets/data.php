@@ -23,7 +23,7 @@ class getData{
         		$response['price']=$price;
         		$response['quantity']=$quantity;
         		$response['image_src']="http://kelvin.ist.rit.edu/~ip9636/Angular/assets/img/".$img;
-        		$response['review'][]=$review;
+        		$response['review']=$review;
         	}
         	return $response;
 
@@ -40,16 +40,14 @@ class getData{
 		$sql->execute();
 		$sql->bind_result($id,$pname,$desc,$price,$quantity,$img,$review);
 		while ($sql->fetch()){
-
 				$temp=array();
-				
         		$temp['id']=$id;	
         		$temp['name']=$pname;
         		$temp['description']=$desc;
         		$temp['price']=$price;
         		$temp['quantity']=$quantity;
-        		$temp['image_src']="kelvin.ist.rit.edu/~ip9636/Angular/img/".$img;
-        		$temp['review'][]=$review;
+        		$temp['image_src']="http://kelvin.ist.rit.edu/~ip9636/Angular/assets/img/".$img;
+        		$temp['review']=$review;
         		array_push($arr,$temp); 
         }
        	return $arr;	
