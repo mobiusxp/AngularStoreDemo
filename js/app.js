@@ -1,66 +1,54 @@
 
 (function(){
     
-var val = window.location.search.replace("?", "");
-    
-var id = parseInt(val.substring(3,5));
-    
-var app = angular.module('myapp', ['ngRoute']);
+    /* create angular module */    
+    var app = angular.module('myapp', []);
 
-app.controller('ProductListController',function($scope,$http) {
-    
-    $scope.productList=[];
-    $http.get('http://kelvin.ist.rit.edu/~ip9636/Angular/index.php?id=0').success(function(data){
-        console.log("in get");
-        console.dir(data);
-        $scope.productList = data;
-        $scope.x =$scope.productList;
-
-    }); 
-    
-this.gotoDetails = function(id) {
-        //redirect to details
-
-    console.log("HELLO"+id);     
-    window.location.href = "detail.html?id="+id;
-    };
-                                
-});
-    
-app.controller('ProductDetailsController',function($scope,$http) {
-   $scope.product={};
-    $http.get('http://kelvin.ist.rit.edu/~ip9636/Angular/index.php?id='+id).success(function(data){
-        console.log("in get");
-        console.dir(data);
-        $scope.product = data;
+    /* create module.controllers 
+    1.ProductListController
+    2.ProductDetailsController
+    3.ReviewController
+    Each controller handles a different view
+    */
+    app.controller('ProductListController',function($http) {     
+        /* initialize */    
+        var pListCtlr=this;
+        pListCtlr.productList=[];
+        /* request the server to get all products.(id=0 returns all products)*/
+        $http.get('http://kelvin.ist.rit.edu/~ip9636/Angular/index.php?id=0').success(function(data){
+            pListCtlr.productList=data;   
+        });                              
+    });//end of ProductListController
         
-    }); 
-                           
-});
-    
-app.controller('ReviewController',function($scope) {
-    $scope.userReview="hi";
-    $scope.email="";
-    $scope.addReview = function() {
-        console.log("hello");
-    };
-                                
-});
-    
-function parse(val) {
-    var result = "Not found",
-        tmp = [];
-    location.search
-    //.replace ( "?", "" ) 
-    // this is better, there might be a question mark inside
-    .substr(1)
-        .split("&")
-        .forEach(function (item) {
-        tmp = item.split("=");
-        if (tmp[0] === val) result = decodeURIComponent(tmp[1]);
-    });
-    return result;
-}
-    
+    app.controller('ProductDetailsController',function($http) {
+
+        /* initialize */
+        var productDetails=this; 
+        productDetails.product={};
+        //parse query string to get the current ID
+        var val = window.location.search.replace("?", "");    
+        productDetails.id=parseInt(val.substring(3,5));
+
+        //request the server for product data
+        $http.get('http://kelvin.ist.rit.edu/~ip9636/Angular/index.php?id='+productDetails.id).success(function(data){
+            /** get the data fetched from the server to populate product **/
+            productDetails.product=data;        
+        }); 
+                               
+    });//end of ProductDetailsController
+        
+    app.controller('ReviewController',function() {
+        
+        /**initialize**/
+        var rCtlr=this;
+        rCtlr.userReview="";
+        rCtlr.email="";
+
+        rCtlr.addReview = function() {
+            /** do something on review submissions. Lets just console log out something for now!! **/
+            console.log("HELLO reviews");
+        };
+                                    
+    });//end of ReviewController
 
 })();

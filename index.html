@@ -2,13 +2,10 @@
 <head>
 	<title>Angular Tutorial</title>
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
-    <script src="./js/app.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/style.css">    
 </head>
+<!-- bootstrap angularJS with module myapp -->
+<!-- Angular will then "compile" the DOM starting at the ngApp root element, processing any directives and bindings found along the way -->
 <body ng-app="myapp">
     <div class="container" ng-controller="ProductListController as pListCtlr">
     	<div id="heading">
@@ -16,15 +13,26 @@
     	</div>
     	<div id="products">
             <div class="row">
-                <div class="col-sm-6 col-md-3 col-lg-3" ng-repeat="product in x">
-                    <div class="thumbnail"><img ng-src="{{product.image_src}}" alt="">
-                        <div class="caption"><h3>{{product.name}}&nbsp;{{product.price|currency}}</h3><p></p>
-                            <p><a class="btn btn-primary" ng-click="pListCtlr.gotoDetails(product.id)" role="button">Details</a>
+                <!-- Use the ngRepeat directive which instantiates a template once per item from a collection -->
+                <div class="col-sm-6 col-md-3 col-lg-3" ng-repeat="product in pListCtlr.productList">
+                    <div class="thumbnail"><img ng-src="{{product.image_src}}" alt=""> 
+                        <!-- display product name and price for each product -->
+                        <div class="caption"><h4>{{product.name}}&nbsp;<code>{{product.price|currency}}</code></h4><p></p>
+                            <p>
+                                <!-- Using Angular markup like {{hash}} in an href attribute will make the link go to the wrong URL if the user clicks it before Angular has a chance to replace the {{hash}} markup with its value. Until Angular replaces the markup the link will be broken and will most likely return a 404 error. The ngHref directive solves this problem. -->
+                                <!-- Hence we use ng-href instead of just href -->
+                                <a ng-href="detail.html?id={{product.id}}" target="_blank" class="btn btn-primary" role="button">Details
+                                </a>
                             </p>
-                        </div></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>	
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.js"></script>
+    <script src="./js/app.js"></script>    
 </body>
 </html>

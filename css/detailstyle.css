@@ -4,11 +4,6 @@
 .ng-valid.ng-dirty{
     border-color: green
 }
-
-.container{
-    
-}
-
 .heading{
     text-align: center;
 }
@@ -22,8 +17,6 @@
     margin: 0 auto;
     max-width: 65%;
 }
-
-
 .categories{
     padding-top: 15px;
     margin-left: 40%;

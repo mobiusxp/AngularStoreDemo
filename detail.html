@@ -2,40 +2,53 @@
 <head>
     <title>Product Detail</title>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <!--<link rel="stylesheet" type="text/css" href="css/style.css">--> 
     <link rel="stylesheet" type="text/css" href="css/detailstyle.css">  
 </head>
+<!-- bind angular module -->
 <body ng-app="myapp">
-<div class="container">
-    <div class="prodsum" ng-controller="ProductDetailsController as product">
-        <div id="heading">
-            <h1>Product Name</h1>
-        </div>
-        <div id="productPicture"><img ng-src="{{product.image_src}}" alt="an image here" /></div>
-        <ul class="nav nav-tabs">
-            <li ng-class="{active:tab===1}"><a href ng-click="tab=1">Details</a></li>
-            <li ng-class="{active:tab===2}"><a href ng-click="tab=2">Review</a></li>
-        </ul>
-
-        <div class="infoContainer">
-            <div class="prodDetails" ng-show="tab===1">
-                <h3>Description</h3>
-                <p>{{product.description}}</p>
+    <div class="container">
+        <!-- bind controller for product details -->
+        <div class="prodsum" ng-controller="ProductDetailsController as productDetails">
+            <div id="heading">
+                <h1>Product Name</h1>
             </div>
-             <div class="prodDetails" id=reviewDiv ng-show="tab===2">
-                 <h3>Review</h3>
-                <p>{{product.review}}</p>
+            <!-- display image for the product,similar to what we did before -->
+            <div id="productPicture"><img ng-src="{{productDetails.product.image_src}}" alt="an image here" /></div>
+            <!-- The ngClass directive allows you to dynamically set CSS classes on an HTML element by 
+            databinding an expression that represents all classes to be added. -->
+            <ul class="nav nav-tabs">
+                <li ng-class="{active:tab===1}"><a href ng-click="tab=1">Details</a></li>
+                <li ng-class="{active:tab===2}"><a href ng-click="tab=2">Review</a></li>
+            </ul>
+            <!-- The ngShow directive shows or hides the given HTML element based on the expression
+             provided to the ngShow attribute -->
+            <div class="infoContainer">
+                <div class="prodDetails" ng-show="tab===1">
+                    <h3>Description</h3>
+                    <!-- display product description when description tab is active -->
+                    <p>{{productDetails.product.description}}</p>
+                </div>
+                 <div class="prodDetails" id=reviewDiv ng-show="tab===2">
+                     <h3>Review</h3>
+                     <!-- display product review when review tab is active -->
+                    <p>{{productDetails.product.review}}</p>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="prodReviews infoContainer" ng-controller="ReviewController as rCtlr">
-        <h3>Submit a review!</h3>
-            <form name="reviewForm" ng-submit="addReview()" novalidate>
-                <b>Review:</b>
-                {{rCtlr.userReview}}</p><br/>
-            
+        <div class="prodReviews infoContainer" ng-controller="ReviewController as rCtlr">
+            <h3>Submit a review!</h3>
+            <form name="reviewForm" ng-submit="rCtlr.addReview()" novalidate>
+                <p>
+                    <b>Email preview:</b>
+                    {{rCtlr.email}}
+                </p>
+                <p>
+                    <b>Review preview:</b>
+                    {{rCtlr.userReview}}
+                </p>
                 <fieldset class="form-group">
                     <label for="email">Email</label>
+                    <!-- The ngModel directive binds an input,select, textarea (or custom form control) to a property on the scope using NgModelController, which is created and exposed by this directive. -->
                     <input type="email" ng-model="rCtlr.email" class="form-control" id="username" required placeholder="Email" />
                 </fieldset>
                 <fieldset class="form-group">
@@ -44,13 +57,11 @@
                 </fieldset>  
                 <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
             </form>
-    </div>
-</div>  
-    
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
-<script src="./js/app.js"></script>
+        </div>
+    </div>  
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.js"></script>
+    <script src="./js/app.js"></script>
 </body>
 </html>
