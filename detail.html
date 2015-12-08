@@ -33,12 +33,7 @@
             <form name="reviewForm" ng-submit="addReview()" novalidate>
                 <b>Review:</b>
                 {{rCtlr.userReview}}</p><br/>
-                <b>Email:</b><cite>{{rCtlr.email}}</cite>
-                <fieldset class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control" id="username" placeholder="username" required/>
-                </fieldset>
-
+            
                 <fieldset class="form-group">
                     <label for="email">Email</label>
                     <input type="email" ng-model="rCtlr.email" class="form-control" id="username" required placeholder="Email" />
