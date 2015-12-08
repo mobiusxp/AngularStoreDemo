@@ -20,7 +20,10 @@ app.controller('ProductListController',function($scope,$http) {
     
 this.gotoDetails = function(id) {
         //redirect to details
+<<<<<<< HEAD
     console.log("HELLO"+id);     
+=======
+>>>>>>> 39a653a27f6278eb492d34828b2bfe1dfa44bfed
     window.location.href = "detail.html?id="+id;
     };
                                 
